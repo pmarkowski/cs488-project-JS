@@ -1,31 +1,36 @@
-var Game = function(viewer) {
+var Game = function(viewer, inputHandler) {
 	this.viewer = viewer;
+	this.inputHandler = inputHandler;
+	inputHandler.setGame(this);
 };
 
-Game.prototype.loadLevel = function (levelFile) {
+Game.prototype.loadLevel = function(levelFile) {
 	console.log("Loading level: " + levelFile);
-	
+
 	this.levelFilename = levelFile;
 	//this.level = runJS(levelFile);
 };
 
-Game.prototype.reloadLevel = function () {
+Game.prototype.reloadLevel = function() {
 	this.loadLevel(this.levelFilename);
 };
 
-Game.prototype.nextLevel = function () {
+Game.prototype.nextLevel = function() {
 	this.loadLevel(this.level.getNextLevel());
 };
 
-Game.prototype.start = function () {
-	console.log("Starting the game!");
-	setInterval(this.update, GAME_INTERVAL_MS);
+Game.prototype.update = function() {
+	this.inputHandler.update();
 };
 
-Game.prototype.update = function () {
-	//console.log("Updated");
-};
-
-Game.prototype.render = function () {
+Game.prototype.render = function() {
 	this.viewer.update();
+};
+
+Game.prototype.rotateCamera = function(x, y) {
+	// this.camera.rotateAroundFocus(x, y);
+};
+
+Game.prototype.updatePlayerMovement = function(playerMovement) {
+	console.log(playerMovement);
 };

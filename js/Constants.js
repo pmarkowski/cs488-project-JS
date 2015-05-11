@@ -1,6 +1,6 @@
 var GAME_FPS = 60;
 
-var GAME_INTERVAL_S = (1.0 / GAME_FPS);
+var GAME_INTERVAL_S  = (1.0 / GAME_FPS);
 var GAME_INTERVAL_MS = (1.0 / GAME_FPS * 1000);
 
 var PI = 3.14159265;
