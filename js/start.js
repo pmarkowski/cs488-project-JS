@@ -14,7 +14,7 @@ function initWebGL(canvas) {
 	}
 
 	return gl;
-};
+}
 
 function start() {
 	var canvas = document.getElementById("glcanvas");
@@ -45,4 +45,4 @@ function start() {
 			game.update();
 		}, GAME_INTERVAL_MS);
 	}
-};
+}

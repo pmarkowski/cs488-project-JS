@@ -21,18 +21,17 @@ var InputHandler = function() {
 			default:
 				break;
 		}
-		console.log(this.keyMap);
 	}
-};
+}
 
-InputHandler.prototype.KeyState = {
-	PRESSED : 1,
+InputHandler.KeyState = {
+	PRESSED  : 1,
 	RELEASED : 2
-};
+}
 
 InputHandler.prototype.setGame = function(game) {
 	this.game = game;
-};
+}
 
 InputHandler.prototype.mouseMoveEvent = function(event) {
 	if (this.oldMouseX === this.oldMouseY && this.oldMouseY === Infinity) {
@@ -48,17 +47,15 @@ InputHandler.prototype.mouseMoveEvent = function(event) {
 
 	this.oldMouseX = event.screenX;
 	this.oldMouseY = event.screenY;
-
-	// console.log("moved mouse! deltaX: " + deltaX + " deltaY: " + deltaY);
-};
+}
 
 InputHandler.prototype.keyPressEvent = function(event) {
-	this.setKeyMapValueFromEvent(event, this.KeyState.PRESSED);
-};
+	this.setKeyMapValueFromEvent(event, InputHandler.KeyState.PRESSED);
+}
 
 InputHandler.prototype.keyReleaseEvent = function(event) {
-	this.setKeyMapValueFromEvent(event, this.KeyState.RELEASED);
-};
+	this.setKeyMapValueFromEvent(event, InputHandler.KeyState.RELEASED);
+}
 
 InputHandler.prototype.update = function() {
 	var playerMovement = new THREE.Vector3();
@@ -66,7 +63,7 @@ InputHandler.prototype.update = function() {
 
 	// Check state of the keys we're interested in to set movement
 	if (this.keyMap["W"]) {
-		if (this.keyMap["W"] === this.KeyState.PRESSED) {
+		if (this.keyMap["W"] === InputHandler.KeyState.PRESSED) {
 			playerMovement.z = 1;
 		} else {
 			playerMovement.z = 0;
@@ -74,7 +71,7 @@ InputHandler.prototype.update = function() {
 		}
 	}
 	if (this.keyMap["S"]) {
-		if (this.keyMap["S"] === this.KeyState.PRESSED) {
+		if (this.keyMap["S"] === InputHandler.KeyState.PRESSED) {
 			playerMovement.z = -1;
 		} else {
 			playerMovement.z = 0;
@@ -82,7 +79,7 @@ InputHandler.prototype.update = function() {
 		}
 	}
 	if (this.keyMap["A"]) {
-		if (this.keyMap["A"] === this.KeyState.PRESSED) {
+		if (this.keyMap["A"] === InputHandler.KeyState.PRESSED) {
 			playerMovement.x = 1;
 		} else {
 			playerMovement.x = 0;
@@ -90,7 +87,7 @@ InputHandler.prototype.update = function() {
 		}
 	}
 	if (this.keyMap["D"]) {
-		if (this.keyMap["D"] === this.KeyState.PRESSED) {
+		if (this.keyMap["D"] === InputHandler.KeyState.PRESSED) {
 			playerMovement.x = -1;
 		} else {
 			playerMovement.x = 0;
@@ -98,7 +95,7 @@ InputHandler.prototype.update = function() {
 		}
 	}
 	if (this.keyMap[" "]) {
-		if (this.keyMap[" "] === this.KeyState.PRESSED) {
+		if (this.keyMap[" "] === InputHandler.KeyState.PRESSED) {
 			playerMovement.y = 1;
 		} else {
 			playerMovement.y = -1;
@@ -107,4 +104,4 @@ InputHandler.prototype.update = function() {
 	}
 
 	this.game.updatePlayerMovement(playerMovement);
-};
+}
