@@ -16,43 +16,42 @@ level.addLight(campLight)
 // level geometry
 var noanim = "data/animations/nil_animation.lua";
 
-skycube = gr.gameobject('data/scenes/starCube.lua', noanim, false)
-skycube:scale(900, 900, 900)
-level:add_gameobject(skycube)
+var skycube = new Gameobject("data/scenes/starCube.lua", noanim, false)
+skycube.scale(900, 900, 900);
+level.addGameobject(skycube);
 
+var grassFloor = new Gameobject("data/scenes/grassCube.lua", noanim)
+grassFloor.scale(100, 0.1, 100);
+level.addGameobject(grassFloor);
 
-grassFloor = gr.gameobject('data/scenes/grassCube.lua', noanim)
-grassFloor:scale(100, 0.1, 100)
-level:add_gameobject(grassFloor)
+var tree1 = new Gameobject("data/scenes/tree.lua", noanim);
+tree1.translate(-20, 0, 0);
+tree1.scale(4, 1, 4);
+level.addGameobject(tree1);
 
-tree1 = gr.gameobject('data/scenes/tree.lua', noanim)
-tree1:translate(-20, 0, 0)
-tree1:scale(4, 1, 4)
-level:add_gameobject(tree1)
+var tree2 = new Gameobject("data/scenes/tree.lua", noanim);
+tree2.translate(-5, 0, -16);
+tree2.scale(2, 1, 2);
+level.addGameobject(tree2);
 
-tree2 = gr.gameobject('data/scenes/tree.lua', noanim)
-tree2:translate(-5, 0, -16)
-tree2:scale(2, 1, 2)
-level:add_gameobject(tree2)
-
-goalflag = gr.gameobject('data/scenes/flagpole.lua', noanim)
-goalflag:translate(0, 0, -30)
-level:set_goal(goalflag)
+var goalflag = new Gameobject("data/scenes/flagpole.lua", noanim);
+goalflag.translate(0, 0, -30);
+level.setGoal(goalflag);
 
 // player
-puppetObject = gr.gameobject('data/scenes/puppet.lua', 'data/animations/puppet_animation.lua')
-puppetObject:translate(3, 10, 5)
-level:set_player(puppetObject)
+var puppetObject = new Gameobject("data/scenes/puppet.lua", "data/animations/puppet_animation.lua");
+puppetObject.translate(3, 10, 5);
+level.setPlayer(puppetObject);
 
-campfire = gr.gameobject('data/scenes/campfire.lua', noanim)
-level:add_gameobject(campfire)
+var campfire = new Gameobject("data/scenes/campfire.lua", noanim);
+level.addGameobject(campfire);
 
 // camera
-camera = gr.camera()
-level:set_camera(camera)
-camera:translate(0.0, 7.0, 16.0)
+var camera = new Camera();
+level.setCamera(camera);
+camera.translate(0.0, 7.0, 16.0);
 
-level:set_next_level("data/level2.lua")
+level.setNextLevel("data/level2.lua");
 
 // return the level we've created
 return level;
